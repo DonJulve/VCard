@@ -366,6 +366,21 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
             animation: modalFadeIn 0.3s ease-out;
         }
+
+        .modal ol {
+            text-align: left;
+            margin: 15px 0;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .modal-content ol {
+            text-align: center;
+        }
+
+        .modal-content ol li {
+            text-align: left;
+        }
         
         @keyframes modalFadeIn {
             from { opacity: 0; transform: scale(0.9); }
@@ -526,13 +541,12 @@
             <h3>Guardar Contacto en iPhone</h3>
             <p>Para guardar el contacto en tu iPhone:</p>
             <ol style="text-align: left; margin: 15px 0;">
-                <li>Haz clic en "Descargar VCF"</li>
-                <li>Abre el archivo descargado</li>
-                <li>Pulsa "Añadir a Contactos"</li>
+                <li>Haz clic en "Añadir Contacto"</li>
+                <li>Se abrirá tu aplicación de contactos</li>
                 <li>Guarda el contacto</li>
             </ol>
             <div class="modal-buttons">
-                <button class="modal-btn primary" onclick="descargarVCard()">Descargar VCF</button>
+                <button class="modal-btn primary" onclick="descargarVCard()">Añadir Contacto</button>
                 <button class="modal-btn secondary" onclick="cerrarModal()">Cerrar</button>
             </div>
         </div>
@@ -546,12 +560,12 @@
             <h3>Guardar Contacto en Android</h3>
             <p>Para guardar el contacto en tu Android:</p>
             <ol style="text-align: left; margin: 15px 0;">
-                <li>Haz clic en "Abrir Contacto"</li>
+                <li>Haz clic en "Añadir Contacto"</li>
                 <li>Se abrirá tu aplicación de contactos</li>
                 <li>Guarda el contacto</li>
             </ol>
             <div class="modal-buttons">
-                <button class="modal-btn primary" onclick="abrirContactoAndroid()">Abrir Contacto</button>
+                <button class="modal-btn primary" onclick="abrirContactoAndroid()">Añadir Contacto</button>
                 <button class="modal-btn secondary" onclick="cerrarModal()">Cerrar</button>
             </div>
         </div>
