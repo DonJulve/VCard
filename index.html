@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javier Julve - Contacto Digital</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <style>
         * {
             margin: 0;
@@ -342,6 +342,83 @@
         .card {
             animation: fadeInUp 0.8s ease-out;
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .modal h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .modal p {
+            color: #4a5568;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .modal-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-btn.primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .modal-btn.secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+        
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .device-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
     </style>
 </head>
 <body>
@@ -397,7 +474,7 @@
             </div>
             
             <div class="action-buttons">
-                <a href="#" class="action-btn" onclick="descargarVCard()">
+                <a href="#" class="action-btn" onclick="guardarContacto()">
                     <i class="fas fa-download"></i>
                     Guardar Contacto
                 </a>
@@ -441,7 +518,65 @@
         </div>
     </div>
 
+    <div class="modal" id="iphoneModal">
+        <div class="modal-content">
+            <div class="device-icon">
+                <i class="fab fa-apple"></i>
+            </div>
+            <h3>Guardar Contacto en iPhone</h3>
+            <p>Para guardar el contacto en tu iPhone:</p>
+            <ol style="text-align: left; margin: 15px 0;">
+                <li>Haz clic en "Descargar VCF"</li>
+                <li>Abre el archivo descargado</li>
+                <li>Pulsa "Añadir a Contactos"</li>
+                <li>Guarda el contacto</li>
+            </ol>
+            <div class="modal-buttons">
+                <button class="modal-btn primary" onclick="descargarVCard()">Descargar VCF</button>
+                <button class="modal-btn secondary" onclick="cerrarModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="androidModal">
+        <div class="modal-content">
+            <div class="device-icon">
+                <i class="fab fa-android"></i>
+            </div>
+            <h3>Guardar Contacto en Android</h3>
+            <p>Para guardar el contacto en tu Android:</p>
+            <ol style="text-align: left; margin: 15px 0;">
+                <li>Haz clic en "Abrir Contacto"</li>
+                <li>Se abrirá tu aplicación de contactos</li>
+                <li>Guarda el contacto</li>
+            </ol>
+            <div class="modal-buttons">
+                <button class="modal-btn primary" onclick="abrirContactoAndroid()">Abrir Contacto</button>
+                <button class="modal-btn secondary" onclick="cerrarModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        function guardarContacto() {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            
+            if (isIOS) {
+                mostrarModal('iphoneModal');
+            } else {
+                mostrarModal('androidModal');
+            }
+        }
+        
+        function mostrarModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+        
+        function cerrarModal() {
+            document.getElementById('iphoneModal').style.display = 'none';
+            document.getElementById('androidModal').style.display = 'none';
+        }
+        
         function descargarVCard() {
             const vcard = `BEGIN:VCARD
 VERSION:3.0
@@ -452,6 +587,7 @@ TEL;TYPE=WORK,VOICE:+34601240746
 TEL;TYPE=HOME,VOICE:+3401240746
 EMAIL:anjubla65@gmail.com
 ADR;TYPE=WORK:;;;Zaragoza;;50008;España
+URL:https://linkedin.com/in/javier-julve-yubero-188203384
 NOTE:Contacto desde tarjeta NFC - Flipper Zero
 END:VCARD`;
             
@@ -465,7 +601,32 @@ END:VCARD`;
             document.body.removeChild(link);
             window.URL.revokeObjectURL(url);
             
-            alert('✅ Contacto descargado correctamente');
+            cerrarModal();
+            setTimeout(() => {
+                alert('✅ Contacto descargado. Ábrelo para guardarlo en tu agenda.');
+            }, 500);
+        }
+        
+        function abrirContactoAndroid() {
+            const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Javier Julve Yubero
+ORG:Sisener Ingenieros
+TITLE:Ingeniero Informático
+TEL;TYPE=WORK,VOICE:+34601240746
+TEL;TYPE=HOME,VOICE:+3401240746
+EMAIL:anjubla65@gmail.com
+ADR;TYPE=WORK:;;;Zaragoza;;50008;España
+URL:https://linkedin.com/in/javier-julve-yubero-188203384
+NOTE:Contacto desde tarjeta NFC - Flipper Zero
+END:VCARD`;
+            
+            const blob = new Blob([vcard], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+            
+            window.location.href = url;
+            
+            cerrarModal();
         }
         
         function toggleAbout() {
@@ -488,10 +649,20 @@ END:VCARD`;
             }
         }
         
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🎉 Tarjeta digital cargada - Lista para NFC');
-            
+        document.addEventListener('DOMContentLoaded', function() {            
             setCustomBanner('assets/Banner_principal.jpg');
+            
+            window.addEventListener('click', function(event) {
+                const iphoneModal = document.getElementById('iphoneModal');
+                const androidModal = document.getElementById('androidModal');
+                
+                if (event.target === iphoneModal) {
+                    iphoneModal.style.display = 'none';
+                }
+                if (event.target === androidModal) {
+                    androidModal.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
