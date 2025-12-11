@@ -240,14 +240,18 @@
             color: white;
         }
         
+        /* Modificación para el layout de 3 botones */
         .action-buttons {
             display: flex;
             gap: 12px;
             margin-top: 20px;
+            /* Permite que los botones se envuelvan si la pantalla es pequeña */
+            flex-wrap: wrap; 
         }
         
         .action-btn {
-            flex: 1;
+            /* Cambio a flex: 1 para distribuir el espacio uniformemente entre los 3 */
+            flex: 1 1 30%; 
             padding: 14px 20px;
             border: 2px solid #667eea;
             background: transparent;
@@ -261,6 +265,7 @@
             justify-content: center;
             gap: 8px;
             cursor: pointer;
+            text-align: center; /* Asegura que el texto se centre si se envuelve */
         }
         
         .action-btn:hover {
@@ -279,6 +284,17 @@
             transform: translateY(-2px);
         }
         
+        /* Estilo para el nuevo botón de Portfolio */
+        .action-btn.portfolio {
+            border-color: #764ba2;
+            color: #764ba2;
+        }
+
+        .action-btn.portfolio:hover {
+            background: #764ba2;
+            color: white;
+        }
+
         .about-section {
             margin-top: 20px;
             text-align: left;
@@ -499,14 +515,18 @@
             </div>
             
             <div class="action-buttons">
-                <a href="#" class="action-btn" onclick="guardarContacto()">
-                    <i class="fas fa-download"></i>
-                    Guardar Contacto
+                <a href="https://donjulve.github.io/Portfolio" target="_blank" class="action-btn portfolio">
+                    <i class="fas fa-briefcase"></i>
+                    Portfolio
                 </a>
                 <button class="action-btn primary" onclick="toggleAbout()">
                     <i class="fas fa-user"></i>
                     Sobre Mí
                 </button>
+                <a href="#" class="action-btn" onclick="guardarContacto()">
+                    <i class="fas fa-download"></i>
+                    Guardar Contacto
+                </a>
             </div>
             
             <div class="about-section" id="aboutSection">
@@ -650,7 +670,7 @@ END:VCARD`;
         
         function toggleAbout() {
             const aboutSection = document.getElementById('aboutSection');
-            const aboutButton = document.querySelector('.action-btn.primary');
+            const aboutButton = document.querySelector('.action-buttons .primary');
             
             if (aboutSection.style.display === 'block') {
                 aboutSection.style.display = 'none';
@@ -668,7 +688,7 @@ END:VCARD`;
             }
         }
         
-        document.addEventListener('DOMContentLoaded', function() {            
+        document.addEventListener('DOMContentLoaded', function() {             
             setCustomBanner('assets/Banner_principal.jpg');
             
             window.addEventListener('click', function(event) {
