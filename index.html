@@ -17,7 +17,7 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #0b0f19;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 15% 20%, rgba(102, 126, 234, 0.22) 0%, transparent 45%),
                 radial-gradient(circle at 85% 80%, rgba(118, 75, 162, 0.25) 0%, transparent 45%),
                 linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
@@ -63,9 +63,11 @@
             0% {
                 transform: translate(0, 0) scale(1);
             }
+
             50% {
                 transform: translate(30px, 40px) scale(1.1);
             }
+
             100% {
                 transform: translate(-20px, 20px) scale(0.95);
             }
@@ -87,19 +89,43 @@
             animation: pcbFlow 3.5s linear infinite;
         }
 
-        .pulse-1 { animation-delay: 0s; }
-        .pulse-2 { animation-delay: 1.2s; }
-        .pulse-3 { animation-delay: 2.5s; }
-        .pulse-4 { animation-delay: 0.7s; }
-        .pulse-5 { animation-delay: 0.4s; }
-        .pulse-6 { animation-delay: 1.8s; }
-        .pulse-7 { animation-delay: 2.9s; }
-        .pulse-8 { animation-delay: 1.0s; }
+        .pulse-1 {
+            animation-delay: 0s;
+        }
+
+        .pulse-2 {
+            animation-delay: 1.2s;
+        }
+
+        .pulse-3 {
+            animation-delay: 2.5s;
+        }
+
+        .pulse-4 {
+            animation-delay: 0.7s;
+        }
+
+        .pulse-5 {
+            animation-delay: 0.4s;
+        }
+
+        .pulse-6 {
+            animation-delay: 1.8s;
+        }
+
+        .pulse-7 {
+            animation-delay: 2.9s;
+        }
+
+        .pulse-8 {
+            animation-delay: 1.0s;
+        }
 
         @keyframes pcbFlow {
             0% {
                 stroke-dashoffset: 540;
             }
+
             100% {
                 stroke-dashoffset: -540;
             }
@@ -115,6 +141,7 @@
                 fill: #0b0f19;
                 stroke: #00f2fe;
             }
+
             100% {
                 r: 6;
                 fill: #00f2fe;
@@ -127,16 +154,36 @@
             animation: chipLighting 3.5s ease-in-out infinite;
         }
 
-        .chip-glow-1 { animation-delay: 0.8s; color: #00f5d4; }
-        .chip-glow-2 { animation-delay: 2.3s; color: #00f2fe; }
-        .chip-glow-3 { animation-delay: 1.4s; color: #ff70a6; }
-        .chip-glow-4 { animation-delay: 2.9s; color: #9d4edd; }
+        .chip-glow-1 {
+            animation-delay: 0.8s;
+            color: #00f5d4;
+        }
+
+        .chip-glow-2 {
+            animation-delay: 2.3s;
+            color: #00f2fe;
+        }
+
+        .chip-glow-3 {
+            animation-delay: 1.4s;
+            color: #ff70a6;
+        }
+
+        .chip-glow-4 {
+            animation-delay: 2.9s;
+            color: #9d4edd;
+        }
 
         @keyframes chipLighting {
-            0%, 65%, 100% {
+
+            0%,
+            65%,
+            100% {
                 filter: drop-shadow(0 0 2px transparent);
             }
-            25%, 40% {
+
+            25%,
+            40% {
                 filter: drop-shadow(0 0 16px currentColor);
             }
         }
@@ -192,6 +239,7 @@
             margin-bottom: 8px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -627,27 +675,51 @@
                 <path d="M 1248 622 L 1130 622 L 1040 720 L 950 720" />
 
                 <!-- Cross-Card Organic Traces (Passing Behind VCard) -->
-                <path d="M 152 198 L 260 198 L 370 310 L 520 310 L 640 430 L 760 430 L 880 310 L 1030 310 L 1140 198 L 1248 198" stroke="rgba(0, 242, 254, 0.18)" stroke-width="2.5" />
-                <path d="M 152 246 L 270 246 L 390 140 L 500 140 L 620 260 L 780 260 L 900 140 L 1010 140 L 1130 246 L 1248 246" stroke="rgba(157, 78, 221, 0.18)" stroke-width="2" />
-                <path d="M 40 435 L 180 435 L 290 510 L 440 510 L 560 390 L 840 390 L 960 510 L 1110 510 L 1220 435 L 1360 435" stroke="rgba(0, 245, 212, 0.18)" stroke-width="2.5" />
-                <path d="M 152 622 L 250 622 L 370 750 L 530 750 L 670 630 L 730 630 L 870 750 L 1030 750 L 1150 622 L 1248 622" stroke="rgba(58, 134, 255, 0.18)" stroke-width="2" />
-                <path d="M 152 646 L 280 646 L 380 540 L 480 540 L 600 660 L 800 660 L 920 540 L 1020 540 L 1120 646 L 1248 646" stroke="rgba(0, 242, 254, 0.18)" stroke-width="2.5" />
+                <path
+                    d="M 152 198 L 260 198 L 370 310 L 520 310 L 640 430 L 760 430 L 880 310 L 1030 310 L 1140 198 L 1248 198"
+                    stroke="rgba(0, 242, 254, 0.18)" stroke-width="2.5" />
+                <path
+                    d="M 152 246 L 270 246 L 390 140 L 500 140 L 620 260 L 780 260 L 900 140 L 1010 140 L 1130 246 L 1248 246"
+                    stroke="rgba(157, 78, 221, 0.18)" stroke-width="2" />
+                <path
+                    d="M 40 435 L 180 435 L 290 510 L 440 510 L 560 390 L 840 390 L 960 510 L 1110 510 L 1220 435 L 1360 435"
+                    stroke="rgba(0, 245, 212, 0.18)" stroke-width="2.5" />
+                <path
+                    d="M 152 622 L 250 622 L 370 750 L 530 750 L 670 630 L 730 630 L 870 750 L 1030 750 L 1150 622 L 1248 622"
+                    stroke="rgba(58, 134, 255, 0.18)" stroke-width="2" />
+                <path
+                    d="M 152 646 L 280 646 L 380 540 L 480 540 L 600 660 L 800 660 L 920 540 L 1020 540 L 1120 646 L 1248 646"
+                    stroke="rgba(0, 242, 254, 0.18)" stroke-width="2.5" />
             </g>
 
             <!-- PCB Animated Electric Pulses (Flowing Directly to Pins) -->
             <g stroke-linecap="round" fill="none">
                 <!-- Terminal Branch Pulses -->
-                <path class="pcb-pulse pulse-1" d="M 152 198 L 280 198 L 380 280 L 440 280" stroke="#00f2fe" stroke-width="3" filter="url(#glow-cyan)" />
-                <path class="pcb-pulse pulse-3" d="M 152 622 L 270 622 L 360 720 L 440 720" stroke="#00f5d4" stroke-width="3.5" filter="url(#glow-cyan)" />
-                <path class="pcb-pulse pulse-2" d="M 1248 198 L 1120 198 L 1020 280 L 960 280" stroke="#ff70a6" stroke-width="3" filter="url(#glow-purple)" />
-                <path class="pcb-pulse pulse-4" d="M 1248 622 L 1130 622 L 1040 720 L 950 720" stroke="#9d4edd" stroke-width="3.5" filter="url(#glow-purple)" />
+                <path class="pcb-pulse pulse-1" d="M 152 198 L 280 198 L 380 280 L 440 280" stroke="#00f2fe"
+                    stroke-width="3" filter="url(#glow-cyan)" />
+                <path class="pcb-pulse pulse-3" d="M 152 622 L 270 622 L 360 720 L 440 720" stroke="#00f5d4"
+                    stroke-width="3.5" filter="url(#glow-cyan)" />
+                <path class="pcb-pulse pulse-2" d="M 1248 198 L 1120 198 L 1020 280 L 960 280" stroke="#ff70a6"
+                    stroke-width="3" filter="url(#glow-purple)" />
+                <path class="pcb-pulse pulse-4" d="M 1248 622 L 1130 622 L 1040 720 L 950 720" stroke="#9d4edd"
+                    stroke-width="3.5" filter="url(#glow-purple)" />
 
                 <!-- Cross-Card Pulses Passing Behind VCard -->
-                <path class="pcb-pulse pulse-7" d="M 152 198 L 260 198 L 370 310 L 520 310 L 640 430 L 760 430 L 880 310 L 1030 310 L 1140 198 L 1248 198" stroke="#00f5d4" stroke-width="4" filter="url(#glow-cyan)" />
-                <path class="pcb-pulse pulse-2" d="M 152 246 L 270 246 L 390 140 L 500 140 L 620 260 L 780 260 L 900 140 L 1010 140 L 1130 246 L 1248 246" stroke="#9d4edd" stroke-width="3.5" filter="url(#glow-purple)" />
-                <path class="pcb-pulse pulse-8" d="M 40 435 L 180 435 L 290 510 L 440 510 L 560 390 L 840 390 L 960 510 L 1110 510 L 1220 435 L 1360 435" stroke="#00f2fe" stroke-width="4" filter="url(#glow-cyan)" />
-                <path class="pcb-pulse pulse-3" d="M 152 622 L 250 622 L 370 750 L 530 750 L 670 630 L 730 630 L 870 750 L 1030 750 L 1150 622 L 1248 622" stroke="#3a86ff" stroke-width="3.5" filter="url(#glow-cyan)" />
-                <path class="pcb-pulse pulse-5" d="M 152 646 L 280 646 L 380 540 L 480 540 L 600 660 L 800 660 L 920 540 L 1020 540 L 1120 646 L 1248 646" stroke="#00f2fe" stroke-width="3.5" filter="url(#glow-cyan)" />
+                <path class="pcb-pulse pulse-7"
+                    d="M 152 198 L 260 198 L 370 310 L 520 310 L 640 430 L 760 430 L 880 310 L 1030 310 L 1140 198 L 1248 198"
+                    stroke="#00f5d4" stroke-width="4" filter="url(#glow-cyan)" />
+                <path class="pcb-pulse pulse-2"
+                    d="M 152 246 L 270 246 L 390 140 L 500 140 L 620 260 L 780 260 L 900 140 L 1010 140 L 1130 246 L 1248 246"
+                    stroke="#9d4edd" stroke-width="3.5" filter="url(#glow-purple)" />
+                <path class="pcb-pulse pulse-8"
+                    d="M 40 435 L 180 435 L 290 510 L 440 510 L 560 390 L 840 390 L 960 510 L 1110 510 L 1220 435 L 1360 435"
+                    stroke="#00f2fe" stroke-width="4" filter="url(#glow-cyan)" />
+                <path class="pcb-pulse pulse-3"
+                    d="M 152 622 L 250 622 L 370 750 L 530 750 L 670 630 L 730 630 L 870 750 L 1030 750 L 1150 622 L 1248 622"
+                    stroke="#3a86ff" stroke-width="3.5" filter="url(#glow-cyan)" />
+                <path class="pcb-pulse pulse-5"
+                    d="M 152 646 L 280 646 L 380 540 L 480 540 L 600 660 L 800 660 L 920 540 L 1020 540 L 1120 646 L 1248 646"
+                    stroke="#00f2fe" stroke-width="3.5" filter="url(#glow-cyan)" />
             </g>
 
             <!-- PCB Micro Vias (Nodes at Junction Points) -->
@@ -663,37 +735,57 @@
             <!-- Left Top Microchip: SISENER-DEV (Sisener Ingenieros - Systems & Dev) -->
             <g transform="translate(60, 180)" class="chip-glow chip-glow-1">
                 <rect x="0" y="0" width="84" height="84" rx="8" fill="#131a26" stroke="#00f5d4" stroke-width="2" />
-                <rect x="12" y="12" width="60" height="60" rx="5" fill="#0b0f19" stroke="rgba(0,245,212,0.4)" stroke-width="1.5" />
-                <text x="42" y="42" fill="#00f5d4" font-size="9.5" font-weight="bold" font-family="monospace" text-anchor="middle">SISENER-DEV</text>
-                <text x="42" y="56" fill="#80ffea" font-size="7.5" font-family="monospace" text-anchor="middle">SIS-8086 • REV2</text>
-                <path d="M -8 18 L 0 18 M -8 42 L 0 42 M -8 66 L 0 66 M 84 18 L 92 18 M 84 42 L 92 42 M 84 66 L 92 66 M 18 -8 L 18 0 M 42 -8 L 42 0 M 66 -8 L 66 0 M 18 84 L 18 92 M 42 84 L 42 92 M 66 84 L 66 92" stroke="#ffb703" stroke-width="2" />
+                <rect x="12" y="12" width="60" height="60" rx="5" fill="#0b0f19" stroke="rgba(0,245,212,0.4)"
+                    stroke-width="1.5" />
+                <text x="42" y="42" fill="#00f5d4" font-size="9.5" font-weight="bold" font-family="monospace"
+                    text-anchor="middle">SISENER-DEV</text>
+                <text x="42" y="56" fill="#80ffea" font-size="7.5" font-family="monospace" text-anchor="middle">SIS-8086
+                    • REV2</text>
+                <path
+                    d="M -8 18 L 0 18 M -8 42 L 0 42 M -8 66 L 0 66 M 84 18 L 92 18 M 84 42 L 92 42 M 84 66 L 92 66 M 18 -8 L 18 0 M 42 -8 L 42 0 M 66 -8 L 66 0 M 18 84 L 18 92 M 42 84 L 42 92 M 66 84 L 66 92"
+                    stroke="#ffb703" stroke-width="2" />
             </g>
 
             <!-- Left Bottom Microchip: USJ-PROF (Universidad San Jorge - Docencia & MCU) -->
             <g transform="translate(60, 580)" class="chip-glow chip-glow-2">
                 <rect x="0" y="0" width="84" height="84" rx="8" fill="#131a26" stroke="#667eea" stroke-width="2" />
-                <rect x="12" y="12" width="60" height="60" rx="5" fill="#0b0f19" stroke="rgba(102,126,234,0.4)" stroke-width="1.5" />
-                <text x="42" y="42" fill="#00f2fe" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">USJ-PROF</text>
-                <text x="42" y="56" fill="#a0c4ff" font-size="7.5" font-family="monospace" text-anchor="middle">USJ-32BIT • MCU</text>
-                <path d="M -8 18 L 0 18 M -8 42 L 0 42 M -8 66 L 0 66 M 84 18 L 92 18 M 84 42 L 92 42 M 84 66 L 92 66 M 18 -8 L 18 0 M 42 -8 L 42 0 M 66 -8 L 66 0 M 18 84 L 18 92 M 42 84 L 42 92 M 66 84 L 66 92" stroke="#ffb703" stroke-width="2" />
+                <rect x="12" y="12" width="60" height="60" rx="5" fill="#0b0f19" stroke="rgba(102,126,234,0.4)"
+                    stroke-width="1.5" />
+                <text x="42" y="42" fill="#00f2fe" font-size="10" font-weight="bold" font-family="monospace"
+                    text-anchor="middle">USJ-PROF</text>
+                <text x="42" y="56" fill="#a0c4ff" font-size="7.5" font-family="monospace"
+                    text-anchor="middle">USJ-32BIT • MCU</text>
+                <path
+                    d="M -8 18 L 0 18 M -8 42 L 0 42 M -8 66 L 0 66 M 84 18 L 92 18 M 84 42 L 92 42 M 84 66 L 92 66 M 18 -8 L 18 0 M 42 -8 L 42 0 M 66 -8 L 66 0 M 18 84 L 18 92 M 42 84 L 42 92 M 66 84 L 66 92"
+                    stroke="#ffb703" stroke-width="2" />
             </g>
 
             <!-- Right Top Microchip: TFG-PAPER (TFG Research Paper & Driver TFT) -->
             <g transform="translate(1256, 180)" class="chip-glow chip-glow-3">
                 <rect x="0" y="0" width="84" height="84" rx="8" fill="#131a26" stroke="#ff007f" stroke-width="2" />
-                <rect x="12" y="12" width="60" height="60" rx="5" fill="#0b0f19" stroke="rgba(255,0,127,0.4)" stroke-width="1.5" />
-                <text x="42" y="42" fill="#ff70a6" font-size="9.5" font-weight="bold" font-family="monospace" text-anchor="middle">TFG-PAPER</text>
-                <text x="42" y="56" fill="#ffc2d1" font-size="7.5" font-family="monospace" text-anchor="middle">IEEE-PUB • 10/10</text>
-                <path d="M -8 18 L 0 18 M -8 42 L 0 42 M -8 66 L 0 66 M 84 18 L 92 18 M 84 42 L 92 42 M 84 66 L 92 66 M 18 -8 L 18 0 M 42 -8 L 42 0 M 66 -8 L 66 0 M 18 84 L 18 92 M 42 84 L 42 92 M 66 84 L 66 92" stroke="#ffb703" stroke-width="2" />
+                <rect x="12" y="12" width="60" height="60" rx="5" fill="#0b0f19" stroke="rgba(255,0,127,0.4)"
+                    stroke-width="1.5" />
+                <text x="42" y="42" fill="#ff70a6" font-size="9.5" font-weight="bold" font-family="monospace"
+                    text-anchor="middle">TFG-PAPER</text>
+                <text x="42" y="56" fill="#ffc2d1" font-size="7.5" font-family="monospace" text-anchor="middle">IEEE-PUB
+                    • 10/10</text>
+                <path
+                    d="M -8 18 L 0 18 M -8 42 L 0 42 M -8 66 L 0 66 M 84 18 L 92 18 M 84 42 L 92 42 M 84 66 L 92 66 M 18 -8 L 18 0 M 42 -8 L 42 0 M 66 -8 L 66 0 M 18 84 L 18 92 M 42 84 L 42 92 M 66 84 L 66 92"
+                    stroke="#ffb703" stroke-width="2" />
             </g>
 
             <!-- Right Bottom Microchip: HEIMDALL (TFM HEIMDALL Ciberseguridad Orchestrator) -->
             <g transform="translate(1256, 580)" class="chip-glow chip-glow-4">
                 <rect x="0" y="0" width="84" height="84" rx="8" fill="#131a26" stroke="#764ba2" stroke-width="2" />
-                <rect x="12" y="12" width="60" height="60" rx="5" fill="#0b0f19" stroke="rgba(118,75,162,0.4)" stroke-width="1.5" />
-                <text x="42" y="42" fill="#9d4edd" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">HEIMDALL</text>
-                <text x="42" y="56" fill="#e0aaff" font-size="7.5" font-family="monospace" text-anchor="middle">GRAPH-AI • ATT&CK</text>
-                <path d="M -8 18 L 0 18 M -8 42 L 0 42 M -8 66 L 0 66 M 84 18 L 92 18 M 84 42 L 92 42 M 84 66 L 92 66 M 18 -8 L 18 0 M 42 -8 L 42 0 M 66 -8 L 66 0 M 18 84 L 18 92 M 42 84 L 42 92 M 66 84 L 66 92" stroke="#ffb703" stroke-width="2" />
+                <rect x="12" y="12" width="60" height="60" rx="5" fill="#0b0f19" stroke="rgba(118,75,162,0.4)"
+                    stroke-width="1.5" />
+                <text x="42" y="42" fill="#9d4edd" font-size="10" font-weight="bold" font-family="monospace"
+                    text-anchor="middle">HEIMDALL</text>
+                <text x="42" y="56" fill="#e0aaff" font-size="7.5" font-family="monospace" text-anchor="middle">GRAPH-AI
+                    • ATT&CK</text>
+                <path
+                    d="M -8 18 L 0 18 M -8 42 L 0 42 M -8 66 L 0 66 M 84 18 L 92 18 M 84 42 L 92 42 M 84 66 L 92 66 M 18 -8 L 18 0 M 42 -8 L 42 0 M 66 -8 L 66 0 M 18 84 L 18 92 M 42 84 L 42 92 M 66 84 L 66 92"
+                    stroke="#ffb703" stroke-width="2" />
             </g>
         </svg>
     </div>
@@ -875,13 +967,13 @@
             const vcard = `BEGIN:VCARD
 VERSION:3.0
 FN:Javier Julve Yubero
-ORG:Universidad San Jorge / Sisener Ingenieros
-TITLE:Ingeniero Informático | Profesor en USJ | Ciberseguridad
+ORG:Sisener Ingenieros / Universidad San Jorge
+TITLE:Ingeniero Informático | Sisener Ingenieros | Profesor en USJ | Ciberseguridad
 EMAIL:anjubla65@gmail.com
-ADR;TYPE=WORK:;;P.º de la Independencia, 16, 1ª planta, Casco Antiguo;Zaragoza;;50004;España
-ADR;TYPE=HOME:;;;Zaragoza;;50008;España
+ADR;TYPE=WORK;LABEL="Sisener Ingenieros":;;P.º de la Independencia, 16, 1ª planta, Casco Antiguo;Zaragoza;;50004;España
+ADR;TYPE=WORK;LABEL="Universidad San Jorge":;;Campus Universitario, Autovía Mudéjar, km. 299, A-23;Villanueva de Gállego;Zaragoza;50830;España
 URL:https://linkedin.com/in/javier-julve-yubero
-NOTE:Profesor en Universidad San Jorge | Ciberseguridad & Hardware Hacking
+NOTE:Sisener Ingenieros | Profesor en Universidad San Jorge | Ciberseguridad & Hardware Hacking
 END:VCARD`;
 
             const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
@@ -901,13 +993,13 @@ END:VCARD`;
             const vcard = `BEGIN:VCARD
 VERSION:3.0
 FN:Javier Julve Yubero
-ORG:Universidad San Jorge / Sisener Ingenieros
-TITLE:Ingeniero Informático | Profesor en USJ | Ciberseguridad
+ORG:Sisener Ingenieros / Universidad San Jorge
+TITLE:Ingeniero Informático | Sisener Ingenieros | Profesor en USJ | Ciberseguridad
 EMAIL:anjubla65@gmail.com
-ADR;TYPE=WORK:;;P.º de la Independencia, 16, 1ª planta, Casco Antiguo;Zaragoza;;50004;España
-ADR;TYPE=HOME:;;;Zaragoza;;50008;España
+ADR;TYPE=WORK;LABEL="Sisener Ingenieros":;;P.º de la Independencia, 16, 1ª planta, Casco Antiguo;Zaragoza;;50004;España
+ADR;TYPE=WORK;LABEL="Universidad San Jorge":;;Campus Universitario, Autovía Mudéjar, km. 299, A-23;Villanueva de Gállego;Zaragoza;50830;España
 URL:https://linkedin.com/in/javier-julve-yubero
-NOTE:Profesor en Universidad San Jorge | Ciberseguridad & Hardware Hacking
+NOTE:Sisener Ingenieros | Profesor en Universidad San Jorge | Ciberseguridad & Hardware Hacking
 END:VCARD`;
 
             const blob = new Blob([vcard], { type: 'text/vcard' });
