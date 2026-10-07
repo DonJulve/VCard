@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,81 +13,178 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-color: #0b0f19;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(102, 126, 234, 0.22) 0%, transparent 45%),
+                radial-gradient(circle at 85% 80%, rgba(118, 75, 162, 0.25) 0%, transparent 45%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            animation: gradientShift 10s ease infinite;
+            padding: 25px 20px;
+            position: relative;
+            overflow-x: hidden;
         }
-        
-        @keyframes gradientShift {
-            0% { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-            50% { background: linear-gradient(135deg, #764ba2 0%, #667eea 100%); }
-            100% { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.6;
+            animation: floatOrb 12s ease-in-out infinite alternate;
         }
-        
+
+        .bg-orb-1 {
+            width: 350px;
+            height: 350px;
+            background: #667eea;
+            top: -50px;
+            left: -50px;
+        }
+
+        .bg-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: #764ba2;
+            bottom: -80px;
+            right: -80px;
+            animation-delay: -6s;
+        }
+
+        @keyframes floatOrb {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(30px, 40px) scale(1.1);
+            }
+            100% {
+                transform: translate(-20px, 20px) scale(0.95);
+            }
+        }
+
+        .pcb-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .pcb-pulse {
+            stroke-dasharray: 90 450;
+            animation: pcbFlow 3.5s linear infinite;
+        }
+
+        .pulse-1 { animation-delay: 0s; }
+        .pulse-2 { animation-delay: 1.2s; }
+        .pulse-3 { animation-delay: 2.5s; }
+        .pulse-4 { animation-delay: 0.7s; }
+        .pulse-5 { animation-delay: 0.4s; }
+        .pulse-6 { animation-delay: 1.8s; }
+        .pulse-7 { animation-delay: 2.9s; }
+        .pulse-8 { animation-delay: 1.0s; }
+
+        @keyframes pcbFlow {
+            0% {
+                stroke-dashoffset: 540;
+            }
+            100% {
+                stroke-dashoffset: -540;
+            }
+        }
+
+        .pcb-node {
+            animation: nodePulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes nodePulse {
+            0% {
+                r: 4;
+                fill: #0b0f19;
+                stroke: #00f2fe;
+            }
+            100% {
+                r: 6;
+                fill: #00f2fe;
+                stroke: #ffffff;
+            }
+        }
+
+        .chip-glow {
+            transition: all 0.3s ease;
+            animation: chipLighting 3.5s ease-in-out infinite;
+        }
+
+        .chip-glow-1 { animation-delay: 0.8s; color: #00f5d4; }
+        .chip-glow-2 { animation-delay: 2.3s; color: #00f2fe; }
+        .chip-glow-3 { animation-delay: 1.4s; color: #ff70a6; }
+        .chip-glow-4 { animation-delay: 2.9s; color: #9d4edd; }
+
+        @keyframes chipLighting {
+            0%, 65%, 100% {
+                filter: drop-shadow(0 0 2px transparent);
+            }
+            25%, 40% {
+                filter: drop-shadow(0 0 16px currentColor);
+            }
+        }
+
         .card {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45), 0 0 35px rgba(102, 126, 234, 0.25);
             text-align: center;
             max-width: 420px;
             width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
         }
-        
+
         .banner {
             height: 120px;
-            background-image: url('https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-image: url('assets/Banner_principal.jpg');
             background-size: cover;
             background-position: center;
             position: relative;
         }
-        
+
         .avatar-container {
             position: relative;
             display: inline-block;
             margin-top: -65px;
             margin-bottom: 20px;
         }
-        
+
         .avatar {
             width: 130px;
             height: 130px;
             border-radius: 50%;
             object-fit: cover;
             border: 5px solid white;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             background: white;
         }
-        
-        .nfc-badge {
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            background: #ff6b6b;
-            color: white;
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            border: 3px solid white;
-        }
-        
+
         .content {
             padding: 0 30px 30px;
         }
-        
+
         .name {
             font-size: 32px;
             font-weight: 800;
@@ -96,30 +194,32 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+
         .title {
-            color: #718096;
-            font-size: 18px;
-            margin-bottom: 10px;
+            color: #4a5568;
+            font-size: 14.5px;
+            line-height: 1.45;
+            margin-bottom: 12px;
             font-weight: 500;
         }
-        
+
         .company {
             color: #667eea;
-            font-size: 16px;
-            margin-bottom: 30px;
+            font-size: 15px;
+            margin-bottom: 22px;
             font-weight: 600;
         }
-        
-        .contact-buttons {
+
+        .contact-buttons-stack {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-bottom: 25px;
+            margin-bottom: 22px;
+            width: 100%;
         }
-        
+
         .btn {
-            padding: 16px 24px;
+            padding: 15px 24px;
             border: none;
             border-radius: 15px;
             font-size: 16px;
@@ -131,124 +231,128 @@
             justify-content: center;
             gap: 12px;
             text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
         }
-        
-        .btn-call {
-            background: linear-gradient(135deg, #4CAF50, #45a049);
-            color: white;
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
-        
+
         .btn-email {
             background: linear-gradient(135deg, #2196F3, #1976D2);
             color: white;
         }
-        
-        .btn-whatsapp {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: white;
-        }
-        
+
         .btn-telegram {
             background: linear-gradient(135deg, #0088cc, #006699);
             color: white;
         }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-        }
-        
-        .social-links {
+
+        .secondary-buttons-row {
             display: flex;
-            justify-content: center;
             gap: 12px;
-            margin: 25px 0;
-            flex-wrap: wrap;
+            margin-bottom: 14px;
+            width: 100%;
         }
-        
+
+        .btn-social-medium {
+            flex: 1 1 calc(50% - 6px);
+            padding: 13px 18px;
+            border-radius: 15px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .btn-social-medium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+        }
+
+        .btn-social-medium.linkedin-btn {
+            background: linear-gradient(135deg, #0077B5, #005885);
+            color: white;
+        }
+
+        .btn-social-medium.github-btn {
+            background: linear-gradient(135deg, #333333, #1a1a1a);
+            color: white;
+        }
+
+        .social-strip {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            background: rgba(102, 126, 234, 0.08);
+            border: 1px solid rgba(102, 126, 234, 0.18);
+            border-radius: 20px;
+            padding: 10px 16px;
+            margin-bottom: 22px;
+            width: 100%;
+        }
+
         .social-icon {
-            width: 45px;
-            height: 45px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.06);
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
         }
-        
+
         .social-icon:hover {
             transform: scale(1.1) rotate(5deg);
         }
-        
+
         .social-icon.instagram-icon {
             color: #E4405F;
-            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
         }
-        
+
         .social-icon.instagram-icon:hover {
             background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040, #F77737, #FCAF45, #FFDC80);
             color: white;
         }
-        
+
         .social-icon.x-icon {
             color: #000000;
-            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
         }
-        
+
         .social-icon.x-icon:hover {
             background: linear-gradient(135deg, #000000, #333333);
             color: white;
         }
-        
-        .social-icon.x-icon svg {
-            width: 18px;
-            height: 18px;
-        }
-        
-        .social-icon.github-icon {
-            color: #333333;
-            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
-        }
-        
-        .social-icon.github-icon:hover {
-            background: linear-gradient(135deg, #333333, #666666);
-            color: white;
-        }
-        
+
         .social-icon.discord-icon {
             color: #5865F2;
-            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
         }
-        
+
         .social-icon.discord-icon:hover {
             background: linear-gradient(135deg, #5865F2, #4752C4);
             color: white;
         }
-        
-        .social-icon.linkedin-icon {
-            color: #0077B5;
-            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
-        }
-        
-        .social-icon.linkedin-icon:hover {
-            background: linear-gradient(135deg, #0077B5, #005885);
-            color: white;
-        }
-        
+
         .action-buttons {
             display: flex;
             gap: 12px;
             margin-top: 20px;
-            flex-wrap: wrap; 
+            flex-wrap: wrap;
         }
-        
+
         .action-btn {
-            flex: 1 1 30%; 
+            flex: 1 1 calc(50% - 6px);
             padding: 14px 20px;
             border: 2px solid #667eea;
             background: transparent;
@@ -256,7 +360,7 @@
             border-radius: 15px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -264,23 +368,22 @@
             cursor: pointer;
             text-align: center;
         }
-        
+
         .action-btn:hover {
-            background: #667eea;
-            color: white;
             transform: translateY(-2px);
         }
-        
-        .action-btn.primary {
+
+        .action-btn.about-btn {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .action-btn.about-btn:hover {
             background: #667eea;
             color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.25);
         }
-        
-        .action-btn.primary:hover {
-            background: #5a6fd8;
-            transform: translateY(-2px);
-        }
-        
+
         .action-btn.portfolio {
             border-color: #764ba2;
             color: #764ba2;
@@ -289,6 +392,22 @@
         .action-btn.portfolio:hover {
             background: #764ba2;
             color: white;
+            box-shadow: 0 4px 15px rgba(118, 75, 162, 0.25);
+        }
+
+        .action-btn.download-contact {
+            flex: 1 1 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.35);
+            font-size: 16px;
+        }
+
+        .action-btn.download-contact:hover {
+            background: linear-gradient(135deg, #5a6fd8, #683e93);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.45);
         }
 
         .about-section {
@@ -301,35 +420,42 @@
             display: none;
             animation: fadeIn 0.5s ease-in;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         .about-section h3 {
             color: #2d3748;
             margin-bottom: 10px;
             font-size: 18px;
         }
-        
+
         .about-section p {
             color: #4a5568;
             line-height: 1.6;
             margin-bottom: 15px;
         }
-        
+
         .about-section ul {
             color: #4a5568;
             padding-left: 20px;
             margin-bottom: 15px;
         }
-        
+
         .about-section li {
             margin-bottom: 8px;
             line-height: 1.5;
         }
-        
+
         .flipper-watermark {
             margin-top: 25px;
             color: #a0aec0;
@@ -339,18 +465,19 @@
             justify-content: center;
             gap: 8px;
         }
-        
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         .card {
             animation: fadeInUp 0.8s ease-out;
         }
@@ -367,7 +494,7 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .modal-content {
             background-color: white;
             padding: 30px;
@@ -375,7 +502,7 @@
             max-width: 400px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
             animation: modalFadeIn 0.3s ease-out;
         }
 
@@ -403,30 +530,37 @@
             text-align: center;
             display: block;
         }
-        
+
         @keyframes modalFadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
-        
+
         .modal h3 {
             color: #2d3748;
             margin-bottom: 15px;
             font-size: 22px;
         }
-        
+
         .modal p {
             color: #4a5568;
             margin-bottom: 20px;
             line-height: 1.5;
         }
-        
+
         .modal-buttons {
             display: flex;
             gap: 10px;
             justify-content: center;
         }
-        
+
         .modal-btn {
             padding: 12px 20px;
             border: none;
@@ -435,22 +569,22 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .modal-btn.primary {
             background: #667eea;
             color: white;
         }
-        
+
         .modal-btn.secondary {
             background: #e2e8f0;
             color: #4a5568;
         }
-        
+
         .modal-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        
+
         .device-icon {
             font-size: 40px;
             margin-bottom: 15px;
@@ -458,96 +592,220 @@
         }
     </style>
 </head>
+
 <body>
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+
+    <div class="pcb-container">
+        <svg class="pcb-svg" width="100%" height="100%" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+                <filter id="glow-purple" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="4" result="blur" />
+                    <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+            </defs>
+
+            <!-- PCB Static Circuit Traces (Connected Directly to Microchip Pins) -->
+            <g stroke="rgba(102, 126, 234, 0.18)" stroke-width="2" fill="none">
+                <!-- Outer Terminal Branch Traces -->
+                <path d="M 152 198 L 280 198 L 380 280 L 440 280" />
+                <path d="M 152 222 L 240 222 L 330 310 L 460 310" />
+                <path d="M 152 622 L 270 622 L 360 720 L 440 720" />
+                <path d="M 1248 198 L 1120 198 L 1020 280 L 960 280" />
+                <path d="M 1248 222 L 1160 222 L 1070 140 L 980 140" />
+                <path d="M 1248 622 L 1130 622 L 1040 720 L 950 720" />
+
+                <!-- Cross-Card Organic Traces (Passing Behind VCard) -->
+                <path d="M 152 198 L 260 198 L 370 310 L 520 310 L 640 430 L 760 430 L 880 310 L 1030 310 L 1140 198 L 1248 198" stroke="rgba(0, 242, 254, 0.18)" stroke-width="2.5" />
+                <path d="M 152 246 L 270 246 L 390 140 L 500 140 L 620 260 L 780 260 L 900 140 L 1010 140 L 1130 246 L 1248 246" stroke="rgba(157, 78, 221, 0.18)" stroke-width="2" />
+                <path d="M 40 435 L 180 435 L 290 510 L 440 510 L 560 390 L 840 390 L 960 510 L 1110 510 L 1220 435 L 1360 435" stroke="rgba(0, 245, 212, 0.18)" stroke-width="2.5" />
+                <path d="M 152 622 L 250 622 L 370 750 L 530 750 L 670 630 L 730 630 L 870 750 L 1030 750 L 1150 622 L 1248 622" stroke="rgba(58, 134, 255, 0.18)" stroke-width="2" />
+                <path d="M 152 646 L 280 646 L 380 540 L 480 540 L 600 660 L 800 660 L 920 540 L 1020 540 L 1120 646 L 1248 646" stroke="rgba(0, 242, 254, 0.18)" stroke-width="2.5" />
+            </g>
+
+            <!-- PCB Animated Electric Pulses (Flowing Directly to Pins) -->
+            <g stroke-linecap="round" fill="none">
+                <!-- Terminal Branch Pulses -->
+                <path class="pcb-pulse pulse-1" d="M 152 198 L 280 198 L 380 280 L 440 280" stroke="#00f2fe" stroke-width="3" filter="url(#glow-cyan)" />
+                <path class="pcb-pulse pulse-3" d="M 152 622 L 270 622 L 360 720 L 440 720" stroke="#00f5d4" stroke-width="3.5" filter="url(#glow-cyan)" />
+                <path class="pcb-pulse pulse-2" d="M 1248 198 L 1120 198 L 1020 280 L 960 280" stroke="#ff70a6" stroke-width="3" filter="url(#glow-purple)" />
+                <path class="pcb-pulse pulse-4" d="M 1248 622 L 1130 622 L 1040 720 L 950 720" stroke="#9d4edd" stroke-width="3.5" filter="url(#glow-purple)" />
+
+                <!-- Cross-Card Pulses Passing Behind VCard -->
+                <path class="pcb-pulse pulse-7" d="M 152 198 L 260 198 L 370 310 L 520 310 L 640 430 L 760 430 L 880 310 L 1030 310 L 1140 198 L 1248 198" stroke="#00f5d4" stroke-width="4" filter="url(#glow-cyan)" />
+                <path class="pcb-pulse pulse-2" d="M 152 246 L 270 246 L 390 140 L 500 140 L 620 260 L 780 260 L 900 140 L 1010 140 L 1130 246 L 1248 246" stroke="#9d4edd" stroke-width="3.5" filter="url(#glow-purple)" />
+                <path class="pcb-pulse pulse-8" d="M 40 435 L 180 435 L 290 510 L 440 510 L 560 390 L 840 390 L 960 510 L 1110 510 L 1220 435 L 1360 435" stroke="#00f2fe" stroke-width="4" filter="url(#glow-cyan)" />
+                <path class="pcb-pulse pulse-3" d="M 152 622 L 250 622 L 370 750 L 530 750 L 670 630 L 730 630 L 870 750 L 1030 750 L 1150 622 L 1248 622" stroke="#3a86ff" stroke-width="3.5" filter="url(#glow-cyan)" />
+                <path class="pcb-pulse pulse-5" d="M 152 646 L 280 646 L 380 540 L 480 540 L 600 660 L 800 660 L 920 540 L 1020 540 L 1120 646 L 1248 646" stroke="#00f2fe" stroke-width="3.5" filter="url(#glow-cyan)" />
+            </g>
+
+            <!-- PCB Micro Vias (Nodes at Junction Points) -->
+            <g fill="#0b0f19">
+                <circle cx="440" cy="280" r="4.5" class="pcb-node" />
+                <circle cx="440" cy="720" r="4.5" class="pcb-node" />
+                <circle cx="960" cy="280" r="4.5" class="pcb-node" />
+                <circle cx="950" cy="720" r="4.5" class="pcb-node" />
+                <circle cx="640" cy="430" r="5" class="pcb-node" />
+                <circle cx="760" cy="430" r="5" class="pcb-node" />
+            </g>
+
+            <!-- Left Top Microchip: SISENER-DEV (Sisener Ingenieros - Systems & Dev) -->
+            <g transform="translate(60, 180)" class="chip-glow chip-glow-1">
+                <rect x="0" y="0" width="84" height="84" rx="8" fill="#131a26" stroke="#00f5d4" stroke-width="2" />
+                <rect x="12" y="12" width="60" height="60" rx="5" fill="#0b0f19" stroke="rgba(0,245,212,0.4)" stroke-width="1.5" />
+                <text x="42" y="42" fill="#00f5d4" font-size="9.5" font-weight="bold" font-family="monospace" text-anchor="middle">SISENER-DEV</text>
+                <text x="42" y="56" fill="#80ffea" font-size="7.5" font-family="monospace" text-anchor="middle">SIS-8086 • REV2</text>
+                <path d="M -8 18 L 0 18 M -8 42 L 0 42 M -8 66 L 0 66 M 84 18 L 92 18 M 84 42 L 92 42 M 84 66 L 92 66 M 18 -8 L 18 0 M 42 -8 L 42 0 M 66 -8 L 66 0 M 18 84 L 18 92 M 42 84 L 42 92 M 66 84 L 66 92" stroke="#ffb703" stroke-width="2" />
+            </g>
+
+            <!-- Left Bottom Microchip: USJ-PROF (Universidad San Jorge - Docencia & MCU) -->
+            <g transform="translate(60, 580)" class="chip-glow chip-glow-2">
+                <rect x="0" y="0" width="84" height="84" rx="8" fill="#131a26" stroke="#667eea" stroke-width="2" />
+                <rect x="12" y="12" width="60" height="60" rx="5" fill="#0b0f19" stroke="rgba(102,126,234,0.4)" stroke-width="1.5" />
+                <text x="42" y="42" fill="#00f2fe" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">USJ-PROF</text>
+                <text x="42" y="56" fill="#a0c4ff" font-size="7.5" font-family="monospace" text-anchor="middle">USJ-32BIT • MCU</text>
+                <path d="M -8 18 L 0 18 M -8 42 L 0 42 M -8 66 L 0 66 M 84 18 L 92 18 M 84 42 L 92 42 M 84 66 L 92 66 M 18 -8 L 18 0 M 42 -8 L 42 0 M 66 -8 L 66 0 M 18 84 L 18 92 M 42 84 L 42 92 M 66 84 L 66 92" stroke="#ffb703" stroke-width="2" />
+            </g>
+
+            <!-- Right Top Microchip: TFG-PAPER (TFG Research Paper & Driver TFT) -->
+            <g transform="translate(1256, 180)" class="chip-glow chip-glow-3">
+                <rect x="0" y="0" width="84" height="84" rx="8" fill="#131a26" stroke="#ff007f" stroke-width="2" />
+                <rect x="12" y="12" width="60" height="60" rx="5" fill="#0b0f19" stroke="rgba(255,0,127,0.4)" stroke-width="1.5" />
+                <text x="42" y="42" fill="#ff70a6" font-size="9.5" font-weight="bold" font-family="monospace" text-anchor="middle">TFG-PAPER</text>
+                <text x="42" y="56" fill="#ffc2d1" font-size="7.5" font-family="monospace" text-anchor="middle">IEEE-PUB • 10/10</text>
+                <path d="M -8 18 L 0 18 M -8 42 L 0 42 M -8 66 L 0 66 M 84 18 L 92 18 M 84 42 L 92 42 M 84 66 L 92 66 M 18 -8 L 18 0 M 42 -8 L 42 0 M 66 -8 L 66 0 M 18 84 L 18 92 M 42 84 L 42 92 M 66 84 L 66 92" stroke="#ffb703" stroke-width="2" />
+            </g>
+
+            <!-- Right Bottom Microchip: HEIMDALL (TFM HEIMDALL Ciberseguridad Orchestrator) -->
+            <g transform="translate(1256, 580)" class="chip-glow chip-glow-4">
+                <rect x="0" y="0" width="84" height="84" rx="8" fill="#131a26" stroke="#764ba2" stroke-width="2" />
+                <rect x="12" y="12" width="60" height="60" rx="5" fill="#0b0f19" stroke="rgba(118,75,162,0.4)" stroke-width="1.5" />
+                <text x="42" y="42" fill="#9d4edd" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">HEIMDALL</text>
+                <text x="42" y="56" fill="#e0aaff" font-size="7.5" font-family="monospace" text-anchor="middle">GRAPH-AI • ATT&CK</text>
+                <path d="M -8 18 L 0 18 M -8 42 L 0 42 M -8 66 L 0 66 M 84 18 L 92 18 M 84 42 L 92 42 M 84 66 L 92 66 M 18 -8 L 18 0 M 42 -8 L 42 0 M 66 -8 L 66 0 M 18 84 L 18 92 M 42 84 L 42 92 M 66 84 L 66 92" stroke="#ffb703" stroke-width="2" />
+            </g>
+        </svg>
+    </div>
     <div class="card">
         <div class="banner" id="customBanner"></div>
-        
+
         <div class="content">
             <div class="avatar-container">
                 <img src="assets/Foto_perfil.jpg" alt="Foto Perfil" class="avatar">
             </div>
-            
+
             <h1 class="name">Javier Julve Yubero</h1>
-            <p class="title">👨‍💻 Ingeniero Informático | Hardware Hacking & Reverse Engineering | Ciberseguridad & Pentesting | Programador Full Stack 🔒</p>
-            <p class="company">Sisener Ingenieros</p>
-            
-            <div class="contact-buttons">
-                <a href="tel:+34601240746" class="btn btn-call">
-                    <i class="fas fa-phone"></i>
-                    Llamar Ahora
-                </a>
+            <p class="title">Ingeniero Informático | Ciberseguridad (Hardware Hacking, Reversing, Pentesting) | Profesor
+                en Universidad San Jorge | Full Stack</p>
+            <p class="company">Sisener Ingenieros | Universidad San Jorge</p>
+
+            <div class="contact-buttons-stack">
                 <a href="mailto:anjubla65@gmail.com" class="btn btn-email">
                     <i class="fas fa-envelope"></i>
                     Enviar Email
                 </a>
-                <a href="https://wa.me/+34601240746" class="btn btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i>
-                    WhatsApp
-                </a>
-                <a href="https://t.me/EL_Julve" class="btn btn-telegram">
+                <a href="https://t.me/EL_Julve" target="_blank" class="btn btn-telegram">
                     <i class="fab fa-telegram"></i>
-                    Telegram
+                    Mensaje por Telegram
                 </a>
             </div>
-            
-            <div class="social-links">
-                <a href="https://linkedin.com/in/javier-julve-yubero" class="social-icon linkedin-icon" title="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
+
+            <div class="secondary-buttons-row">
+                <a href="https://linkedin.com/in/javier-julve-yubero" target="_blank"
+                    class="btn-social-medium linkedin-btn" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i> LinkedIn
                 </a>
-                <a href="https://github.com/DonJulve" class="social-icon github-icon" title="GitHub">
-                    <i class="fab fa-github"></i>
+                <a href="https://github.com/DonJulve" target="_blank" class="btn-social-medium github-btn"
+                    title="GitHub">
+                    <i class="fab fa-github"></i> GitHub
                 </a>
-                <a href="https://discord.com/users/435851885811859456" class="social-icon discord-icon" title="Discord">
-                    <i class="fab fa-discord"></i>
-                </a>
-                <a href="https://www.instagram.com/el_julve" class="social-icon instagram-icon" title="Instagram">
+            </div>
+
+            <div class="social-strip">
+                <a href="https://www.instagram.com/el_julve" target="_blank" class="social-icon instagram-icon"
+                    title="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://x.com/Julverius" class="social-icon x-icon" title="X">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                <a href="https://x.com/Julverius" target="_blank" class="social-icon x-icon" title="X">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
                 </a>
+                <a href="https://discord.com/users/435851885811859456" target="_blank" class="social-icon discord-icon"
+                    title="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
             </div>
-            
+
             <div class="action-buttons">
+                <button class="action-btn about-btn" onclick="toggleAbout()">
+                    <i class="fas fa-user"></i>
+                    Sobre Mí
+                </button>
                 <a href="https://donjulve.github.io/Portfolio" target="_blank" class="action-btn portfolio">
                     <i class="fas fa-briefcase"></i>
                     Portfolio
                 </a>
-                <button class="action-btn primary" onclick="toggleAbout()">
-                    <i class="fas fa-user"></i>
-                    Sobre Mí
-                </button>
-                <a href="#" class="action-btn" onclick="guardarContacto()">
+                <a href="#" class="action-btn download-contact" onclick="guardarContacto()">
                     <i class="fas fa-download"></i>
                     Guardar Contacto
                 </a>
             </div>
-            
+
             <div class="about-section" id="aboutSection">
-                <h4>👨‍💻 Sobre Mí</h4>
-                <p>Soy Javier Julve, Ingeniero Informático con especialidad en Ingeniería de Computadores. Mi pasión y enfoque principal residen en el <strong>Hardware Hacking</strong>, la <strong>Ingeniería Inversa</strong> y la <strong>Ciberseguridad Ofensiva</strong>.</p>
-                
-                <h4>🔐 Ciberseguridad, Sistemas y Redes</h4>
+                <h4>Sobre Mí</h4>
+                <p>Soy Javier Julve, Ingeniero Informático con especialidad en Ingeniería de Computadores (Hardware). Mi
+                    pasión y mi enfoque principal residen en el <strong>Hardware Hacking</strong>, la <strong>Ingeniería
+                        Inversa</strong> y la <strong>Ciberseguridad Ofensiva</strong>. Me dedico a diseccionar y
+                    comprender los sistemas desde su nivel más físico y profundo para descubrir cómo funcionan
+                    realmente, identificar vulnerabilidades y evaluar su seguridad.</p>
+
+                <h4>Ciberseguridad, Sistemas y Redes (Foco Principal)</h4>
+                <p>Mi especialización se centra en el análisis de bajo nivel, la auditoría y la infraestructura:</p>
                 <ul>
-                    <li><strong>Ciberseguridad:</strong> Especialización en Ingeniería Inversa, Forense Digital y Hardware Hacking. Pentesting en entornos de laboratorio (Kali Linux, Raspberry Pi).</li>
-                    <li><strong>Sistemas y Redes:</strong> Administración de Redes y dominio profundo de entornos Linux.</li>
-                    <li><strong>DevSecOps:</strong> Uso avanzado de contenedores (Docker) y orquestación (Kubernetes).</li>
+                    <li><strong>Ciberseguridad:</strong> Especialización en Ingeniería Inversa, Análisis Forense Digital
+                        y Hardware Hacking. Experiencia práctica en pentesting y explotación de vulnerabilidades en
+                        entornos de laboratorio (Kali Linux, Raspberry Pi).</li>
+                    <li><strong>Sistemas y Redes:</strong> Sólidos conocimientos en Administración de Redes y dominio
+                        profundo de entornos Linux.</li>
+                    <li><strong>DevSecOps e Infraestructura:</strong> Uso avanzado de contenedores (Docker) y
+                        herramientas de orquestación (Kubernetes) para asegurar, desplegar y monitorizar aplicaciones de
+                        manera eficiente.</li>
                 </ul>
-                
-                <h4>💻 Desarrollo de Software & Full Stack</h4>
+
+                <h4>Desarrollo de Software &amp; Full Stack (Background Integral)</h4>
+                <p>Para respaldar mi trabajo en ciberseguridad, cuento con una experiencia integral en desarrollo que me
+                    permite crear exploits, automatizar procesos y comprender a la perfección las aplicaciones que
+                    audito:</p>
                 <ul>
-                    <li><strong>Bajo Nivel y Scripting:</strong> C, C++, Rust, Python, Go, Shell y Haskell.</li>
-                    <li><strong>Web (Moderno y Legado):</strong> HTML, CSS, JavaScript, TypeScript, Ruby y PHP.</li>
+                    <li><strong>Bajo Nivel y Scripting:</strong> C, C++, Rust, Python, Go y Shell.</li>
+                    <li><strong>Paradigma Funcional:</strong> Haskell.</li>
+                    <li><strong>Ecosistema Web (Moderno y Legado):</strong> HTML, CSS, JavaScript, TypeScript, Ruby y
+                        PHP.</li>
                     <li><strong>Frameworks:</strong> Angular, React, Rails, Flask y Django.</li>
-                    <li><strong>Bases de Datos:</strong> PostgreSQL, MySQL, SQLite, Redis y MongoDB.</li>
+                    <li><strong>Bases de Datos:</strong> PostgreSQL, MySQL, SQLite, Neo4j, Redis y MongoDB.</li>
                 </ul>
-                
-                <h4>💡 Filosofía</h4>
-                <p>Disfruto desmontando cajas negras y explorando constantemente nuevas tecnologías. Afronto la seguridad con una visión de 360 grados y siempre estoy abierto a nuevos proyectos. ¡No dudes en contactarme!</p>
+
+                <h4>Filosofía y Colaboraciones</h4>
+                <p>De mentalidad curiosa y creativa, me encanta transformar ideas innovadoras en proyectos funcionales.
+                    Disfruto desmontando cajas negras y explorando constantemente nuevas tecnologías y retos técnicos
+                    complejos. Afronto la seguridad con una visión de 360 grados (desde el silicio hasta la web) y
+                    siempre estoy abierto a nuevos proyectos y colaboraciones. ¡No dudes en contactarme o echar un
+                    vistazo a mis investigaciones!</p>
             </div>
-            
+
             <div class="flipper-watermark">
                 <i class="fas fa-microchip"></i>
                 Tarjeta NFC - Flipper Zero
@@ -596,38 +854,36 @@
     <script>
         function guardarContacto() {
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-            
+
             if (isIOS) {
                 mostrarModal('iphoneModal');
             } else {
                 mostrarModal('androidModal');
             }
         }
-        
+
         function mostrarModal(modalId) {
             document.getElementById(modalId).style.display = 'flex';
         }
-        
+
         function cerrarModal() {
             document.getElementById('iphoneModal').style.display = 'none';
             document.getElementById('androidModal').style.display = 'none';
         }
-        
+
         function descargarVCard() {
             const vcard = `BEGIN:VCARD
 VERSION:3.0
 FN:Javier Julve Yubero
-ORG:Sisener Ingenieros
-TITLE:Ingeniero Informático
-TEL;TYPE=WORK,VOICE:+34601240746
-TEL;TYPE=HOME,VOICE:+34601240746
+ORG:Universidad San Jorge / Sisener Ingenieros
+TITLE:Ingeniero Informático | Profesor en USJ | Ciberseguridad
 EMAIL:anjubla65@gmail.com
 ADR;TYPE=WORK:;;P.º de la Independencia, 16, 1ª planta, Casco Antiguo;Zaragoza;;50004;España
 ADR;TYPE=HOME:;;;Zaragoza;;50008;España
 URL:https://linkedin.com/in/javier-julve-yubero
-NOTE:Contacto desde tarjeta NFC - Flipper Zero
+NOTE:Profesor en Universidad San Jorge | Ciberseguridad & Hardware Hacking
 END:VCARD`;
-            
+
             const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
@@ -637,37 +893,35 @@ END:VCARD`;
             link.click();
             document.body.removeChild(link);
             window.URL.revokeObjectURL(url);
-            
+
             cerrarModal();
         }
-        
+
         function abrirContactoAndroid() {
             const vcard = `BEGIN:VCARD
 VERSION:3.0
 FN:Javier Julve Yubero
-ORG:Sisener Ingenieros
-TITLE:Ingeniero Informático
-TEL;TYPE=WORK,VOICE:+34601240746
-TEL;TYPE=HOME,VOICE:+34601240746
+ORG:Universidad San Jorge / Sisener Ingenieros
+TITLE:Ingeniero Informático | Profesor en USJ | Ciberseguridad
 EMAIL:anjubla65@gmail.com
 ADR;TYPE=WORK:;;P.º de la Independencia, 16, 1ª planta, Casco Antiguo;Zaragoza;;50004;España
 ADR;TYPE=HOME:;;;Zaragoza;;50008;España
 URL:https://linkedin.com/in/javier-julve-yubero
-NOTE:Contacto desde tarjeta NFC - Flipper Zero
+NOTE:Profesor en Universidad San Jorge | Ciberseguridad & Hardware Hacking
 END:VCARD`;
-            
+
             const blob = new Blob([vcard], { type: 'text/vcard' });
             const url = URL.createObjectURL(blob);
-            
+
             window.location.href = url;
-            
+
             cerrarModal();
         }
-        
+
         function toggleAbout() {
             const aboutSection = document.getElementById('aboutSection');
-            const aboutButton = document.querySelector('.action-buttons .primary');
-            
+            const aboutButton = document.querySelector('.action-buttons .about-btn');
+
             if (aboutSection.style.display === 'block') {
                 aboutSection.style.display = 'none';
                 aboutButton.innerHTML = '<i class="fas fa-user"></i> Sobre Mí';
@@ -676,21 +930,21 @@ END:VCARD`;
                 aboutButton.innerHTML = '<i class="fas fa-times"></i> Cerrar';
             }
         }
-        
+
         function setCustomBanner(imageUrl) {
             const banner = document.getElementById('customBanner');
             if (imageUrl) {
                 banner.style.backgroundImage = `url('${imageUrl}')`;
             }
         }
-        
-        document.addEventListener('DOMContentLoaded', function() {             
+
+        document.addEventListener('DOMContentLoaded', function () {
             setCustomBanner('assets/Banner_principal.jpg');
-            
-            window.addEventListener('click', function(event) {
+
+            window.addEventListener('click', function (event) {
                 const iphoneModal = document.getElementById('iphoneModal');
                 const androidModal = document.getElementById('androidModal');
-                
+
                 if (event.target === iphoneModal) {
                     iphoneModal.style.display = 'none';
                 }
@@ -701,4 +955,5 @@ END:VCARD`;
         });
     </script>
 </body>
+
 </html>
